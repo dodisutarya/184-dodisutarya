@@ -1,11 +1,21 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
 
 Route::get('/', function () {
     return view('home');
 });
+
+
+Route::prefix('admin')->name("admin.")->group(function () {
+
+    Route::get('/', [AdminController::class, 'index'])->name("admin");
+
+    Route::get('/create', [AdminController::class, 'create'])->name("create");
+});
+
 
 
 Route::prefix('blog')->name("blog.")->group(function () {

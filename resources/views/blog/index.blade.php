@@ -1,5 +1,5 @@
 @extends("layouts.app")
-@section("title", "List Users")
+@section("title", "Amazing Stories")
 @section("content")
 
 <section class="bg-white dark:bg-gray-900">

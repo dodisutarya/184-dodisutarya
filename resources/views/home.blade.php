@@ -1,5 +1,5 @@
 @extends("layouts.app")
-@section("title", "List Users")
+@section("title", "HomePage")
 @section("content")
 
     <!-- hero section -->
