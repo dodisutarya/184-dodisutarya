@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BlogController;
 
 Route::get('/', function () {
     return view('home');
@@ -9,9 +10,12 @@ Route::get('/', function () {
 
 Route::prefix('blog')->name("blog.")->group(function () {
 
-    Route::get('/', function () {
-        return view('blog/index');
-    })->name("listBlogs");
+    // Route::get('/', function () {
+    //     return view('blog/index');
+    // })->name("listBlogs");
+
+    Route::get('/', [BlogController::class, 'index'])->name("listBlogs");
+
 
     Route::get('/{id}', function () {
         return view('blog/detailblog');
