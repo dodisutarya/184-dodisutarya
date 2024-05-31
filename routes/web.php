@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
+use Illuminate\Support\Facades\DB;
 
 Route::get('/', function () {
     return view('home');
@@ -11,7 +12,12 @@ Route::get('/', function () {
 
 Route::prefix('admin')->name("admin.")->group(function () {
 
-    Route::get('/', [AdminController::class, 'index'])->name("admin");
+    // Route::get('/', [AdminController::class, 'index'])->name("admin.index");
+    Route::get("/", function () {
+        $blogs = DB::table('blogs')->get();
+
+        return view('admin.index', ['blogs' => $blogs]);
+    });
 
     Route::get('/create', [AdminController::class, 'create'])->name("create");
 });
@@ -25,7 +31,6 @@ Route::prefix('blog')->name("blog.")->group(function () {
     // })->name("listBlogs");
 
     Route::get('/', [BlogController::class, 'index'])->name("listBlogs");
-
 
     Route::get('/{id}', function () {
         return view('blog/detailblog');
